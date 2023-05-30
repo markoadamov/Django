@@ -17,9 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from quickstart.views import HomeView
+from quickstart.views import ToDoViewSet
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', HomeView.as_view(), name='home'),
+    path('todo/<int:pk>/', ToDoViewSet.as_view({'get': 'retrieve'}), name='todo-detail'),
 ]
