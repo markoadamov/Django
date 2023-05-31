@@ -12,7 +12,7 @@ from .serializers import UserSerializer
 
 from django.contrib.auth.models import User
 
-from .permissions import AdminOnlyPermission
+from rest_framework.permissions import IsAdminUser
 
 # Create your views here.
 class HomeView(View):
@@ -33,5 +33,5 @@ class UserProfileView(APIView):
 class UserViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [AdminOnlyPermission]
+    permission_classes = [IsAdminUser]
 
