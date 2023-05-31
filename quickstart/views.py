@@ -35,3 +35,11 @@ class UserViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     serializer_class = UserSerializer
     permission_classes = [IsAdminUser]
 
+
+class UserFilterView(APIView):
+    def get(self, request):
+        name = request.GET.get('name', '')
+        filtered_users = User.objects.filter(first_name__icontains=name) | User.objects.filter(last_name__icontains=name)
+        serializer = UserSerializer(filtered_users, many=True)
+        return Response(serializer.data)
+
