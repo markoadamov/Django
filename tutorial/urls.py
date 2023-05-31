@@ -22,6 +22,7 @@ from quickstart.views import ToDoViewSet
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from quickstart.views import UserProfileView
+from quickstart.views import UserViewSet
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,4 +31,5 @@ urlpatterns = [
 
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('users/me/', UserProfileView.as_view(), name='user_profile'),
+    path('users/<int:pk>/', UserViewSet.as_view({'get': 'retrieve'}), name='user_details'),
 ]
