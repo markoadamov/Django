@@ -19,9 +19,15 @@ from django.urls import path
 from quickstart.views import HomeView
 from quickstart.views import ToDoViewSet
 
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+from quickstart.views import UserProfileView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', HomeView.as_view(), name='home'),
     path('todo/<int:pk>/', ToDoViewSet.as_view({'get': 'retrieve'}), name='todo-detail'),
+
+    path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('users/me/', UserProfileView.as_view(), name='user_profile'),
 ]
