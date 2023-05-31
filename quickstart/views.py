@@ -43,3 +43,8 @@ class UserFilterView(APIView):
         serializer = UserSerializer(filtered_users, many=True)
         return Response(serializer.data)
 
+
+class UserTemplateView(View):
+    def get(self, request, pk):
+        user = User.objects.get(pk=pk)
+        return render(request, 'user.html', {'user': user})

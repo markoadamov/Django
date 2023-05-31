@@ -23,6 +23,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 from quickstart.views import UserProfileView
 from quickstart.views import UserViewSet
+from quickstart.views import UserTemplateView
 
 from quickstart.views import UserFilterView
 urlpatterns = [
@@ -32,7 +33,9 @@ urlpatterns = [
 
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('users/me/', UserProfileView.as_view(), name='user_profile'),
-    path('users/<int:pk>/', UserViewSet.as_view({'get': 'retrieve'}), name='user_details'),
+
+    # path('users/<int:pk>/', UserViewSet.as_view({'get': 'retrieve'}), name='user_details'),
+    path('users/<int:pk>/', UserTemplateView.as_view(), name='user-template'),
 
     path('users/filter/', UserFilterView.as_view(), name='user-filter'),
 ]
